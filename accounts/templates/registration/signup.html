@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastrar{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Cadastrar</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {% if field.name == "username" %}
+                    <label for="{{ field.id_for_label }}">Usuário</label>
+                {% elif field.name == "password1" %}
+                    <label for="{{ field.id_for_label }}">Senha</label>
+                {% elif field.name == "password2" %}
+                    <label for="{{ field.id_for_label }}">Confirmação de senha</label>
+                {% else %}
+                    {{ field.label_tag }}  {# Caso não tenha um label específico, usa o padrão #}
+                {% endif %}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="button">Cadastrar</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %} 
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<body>
+    {% if user.is_authenticated %}
+        <h1>Olá, {{ user.username }}!</h1>
+        <p><a href="{% url 'password_change' %}">Alterar senha</a></p>
+    {% endif %}
+    <main>
+        <section id="tipos" class="tipos-section">
+            <div class="tipos-container">
+                <div class="tipos-item">
+                    <img src="{% static 'img/recycle.svg' %}" alt="Ícone de reciclagem" class="tipos-img">
+                    <input type="text" id="residuoSearch" placeholder="Procure por um tipo de resíduo" class="tipos-input">
+                    <button type="button" class="button">Procurar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="carousel">
+            <div id="carousel-container">
+                <div class="recicle-card">
+                    <img src="{% static 'img/recicle_mais2.png' %}" alt="Embalagens recicláveis em uma cesta" class="recicle-card-img">
+                    <h3>Como reciclar mais sem esforço</h3>
+                    <a href="recicle_mais.html" class="button">Saiba mais</a>
+                </div>
+                <div class="recicle-card">
+                    <img src="{% static 'img/plastico_simbolo.png' %}" alt="Símbolo de plástico reciclável" class="recicle-card-img">
+                    <h3>Entendendo os símbolos de reciclagem</h3>
+                    <a href="dicas_reciclagem.html" class="button">Saiba mais</a>
+                </div>
+                <div class="recicle-card">
+                    <img src="{% static 'img/lixo_contaminado.jpg' %}" alt="Embalagens de lixo contaminado" class="recicle-card-img">
+                    <h3>Como reduzir a contaminação dos resíduos</h3>
+                    <a href="reciclagem_criativa.html" class="button">Saiba mais</a>
+                </div>
+            </div>
+            
+            <button id="prevBtn" class="carousel-btn">❮</button>
+            <button id="nextBtn" class="carousel-btn">❯</button>
+        </section>
+
+        <section id="locais" class="locais-section">
+            <div class="locais-container">
+                <h2>Encontre pontos de coleta de resíduos perto de você</h2>
+                <div class="locais-item">
+                    <img src="{% static 'img/location.svg' %}" alt="Ícone de mapa" class="locais-img">
+                    <input type="text" id="localSearch" placeholder="Procure por um local de coleta" class="locais-input">
+                    <button type="button" class="button">Procurar</button>
+                </div>
+            </div>
+        </section>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+{% endblock %}

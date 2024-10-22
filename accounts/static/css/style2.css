@@ -1,0 +1,346 @@
+:root {
+  --scroll-behavior: smooth;
+  --theme-ui-colors-text: #000000;
+  --theme-ui-colors-background: ##f4f4f4;
+  --theme-ui-colors-primary: #81aa12;
+  --theme-ui-colors-button-hover: #6FBF3D;
+  --theme-ui-colors-secondary: #838688;
+  --theme-ui-colors-accent: #CFD1D3;
+  --theme-ui-colors-highlight: #CA250A;
+  --theme-ui-colors-muted: #F5F6F8;
+  --theme-ui-colors-forestGreen: #0B301A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--theme-ui-colors-background);
+  min-height: 100%;
+}
+
+header {
+  position: sticky;
+  /* Faz o header ficar fixo no topo */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--theme-ui-colors-primary);
+  color: var(--theme-ui-colors-background);
+  padding: 1em;
+  text-align: center;
+}
+
+header h1 {
+  padding: 0.5em;
+  color: var(--theme-ui-colors-background);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+a {
+  color: var(--theme-ui-colors-background);
+  text-decoration: none;
+}
+
+.header-buttons-container {
+  margin-left: auto;
+  /* Alinha os botões à direita */
+  display: flex;
+  /* Para colocar os botões lado a lado */
+}
+
+.button-entrar {
+  background-color: var(--theme-ui-colors-background);
+  color: var(--theme-ui-colors-primary);
+  padding: 0.5em 1em;
+  border: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-entrar:hover {
+  background-color: var(--theme-ui-colors-accent);
+}
+
+.button-cadastrar {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.button-cadastrar:hover {
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+}
+
+main {
+  padding: 20px;
+  min-height: calc(100vh - (header height + footer height));
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  color: #333;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.tipos-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--theme-ui-colors-muted);
+}
+
+.tipos-container {
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.04);
+  background-color: var(--theme-ui-colors-background);
+  border-radius: 8px;
+}
+
+.tipos-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--theme-ui-colors-secondary);
+}
+
+.tipos-item:last-child {
+  border-bottom: none;
+}
+
+.tipos-img {
+  width: 45px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.tipos-label {
+  margin-right: 10px;
+}
+
+.tipos-input {
+  flex: 1;
+  height: 30px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid var(--theme-ui-colors-secondary);
+  border-radius: 4px;
+}
+
+.button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: var(--theme-ui-colors-primary);
+  color: var(--theme-ui-colors-background);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--theme-ui-colors-button-hover);
+}
+
+/* Carousel container */
+#carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#carousel-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Esconde a barra de rolagem horizontal */
+}
+
+.recicle-card {
+  width: 300px;
+  height: 400px;
+  flex-shrink: 0;
+  background-color: var(--theme-ui-colors-background);
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recicle-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.recicle-card h2 {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.recicle-card p {
+  margin-top: 10px;
+}
+
+/* Buttons for carousel navigation */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--theme-ui-colors-muted);
+  opacity: 0.8;
+  color: var(--theme-ui-colors-primary);
+  border: none;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Transition for hover effect */
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+
+.locais-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--theme-ui-colors-muted);
+}
+
+.locais-container {
+  display: flex;
+  flex-direction: column;
+  /* Coloca os itens em coluna */
+  width: 720px;
+  /* Largura do contêiner */
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.04);
+  background-color: var(--theme-ui-colors-background);
+  border-radius: 8px;
+  /* Cantos arredondados */
+  padding: 20px;
+}
+
+.locais-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.locais-img {
+  width: 45px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.locais-input {
+  flex: 1;
+  height: 30px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid var(--theme-ui-colors-secondary);
+  border-radius: 4px;
+}
+
+.form-container {
+  background-color: var(--theme-ui-colors-muted);
+  /* Cor de fundo do container */
+  padding: 20px;
+  /* Espaçamento interno */
+  border-radius: 8px;
+  /* Cantos arredondados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* Sombra do container */
+  width: 600px;
+  /* Largura do container */
+  text-align: center;
+  /* Centraliza o texto dentro do container */
+  position: fixed;
+  /* Para que a posição seja relativa ao body */
+  top: 50%;
+  /* Centralizando verticalmente */
+  left: 50%;
+  /* Centralizando horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Ajustando a posição para o centro */
+}
+
+.error {
+  color: red;
+  /* Adiciona uma cor vermelha às mensagens de erro */
+  font-size: 14px;
+  /* Tamanho da fonte das mensagens de erro */
+}
+
+.highlight-link {
+  color: var(--theme-ui-colors-primary);
+  /* Cor do link destacado */
+  font-weight: bold;
+  /* Deixa o texto em negrito */
+}
+
+@media (max-width: 768px) {
+
+  .tipos-container,
+  .locais-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .recicle-card {
+    width: 90%;
+  }
+}
