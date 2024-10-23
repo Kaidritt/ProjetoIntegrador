@@ -131,6 +131,17 @@ section {
     border-radius: 4px;
 }
 
+.resultados-container {
+    margin-top: 20px;
+}
+
+.residuo-item {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
 .locais-container h2 {
     text-align: center;
     margin: 20px;
@@ -220,6 +231,11 @@ section {
     right: 10px;
 }
 
+#map {
+    height: 500px;
+    width: 100%;
+}
+
 .form-container {
     background-color: var(--theme-ui-colors-muted);
     padding: 20px;
@@ -257,6 +273,7 @@ section {
     font-size: 14px;
     margin-top: 5px;
 }
+
 
 @media (max-width: 768px) {
     .tipos-container, .locais-container {
