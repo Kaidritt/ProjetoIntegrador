@@ -231,9 +231,14 @@ section {
     right: 10px;
 }
 
+.locais-container{
+    height: 800px;
+
+}
+
 #map {
-    height: 500px;
-    width: 100%;
+    height: 800px;
+    width: 80%;
 }
 
 .form-container {

@@ -62,17 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
     //const marker = L.marker([-24.95555, -53.4552]).addTo(map);
     //marker.bindPopup('Cascavel').openPopup();
     
+    // Função para criar ícones em forma de círculo
     function createCircleIcon(color) {
         return L.divIcon({
-            className: 'custom-circle-icon',
-            html: `<div style="background-color: ${color}; width: 10px; height: 10px; border-radius: 50%;"></div>`,
-            iconSize: [10, 10],
-            iconAnchor: [5, 5],
-            popupAnchor: [0, -5],
+        className: 'custom-circle-icon',
+        html: `<div style="background-color: #${color}; width: 10px; height: 10px; border-radius: 50%;"></div>`,
+        iconSize: [10, 10],
+        iconAnchor: [5, 5],
+        popupAnchor: [0, -5],
         });
-    }
+        }
 
-        // Definir as coordenadas dos 10 pontos fictícios
+    // Definir as coordenadas dos 10 pontos fictícios
     var pontosDeColeta = [
         { coords: [-24.9530, -53.4550], color: '008000', descricao: 'Vidro' },
         { coords: [-24.9600, -53.4500], color: 'FF0000', descricao: 'Plástico' },
@@ -91,11 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { coords: [-24.9570, -53.4580], color: '008000', descricao: 'Vidro' }
     ];
 
-     // Adicionar cada ponto de coleta no mapa
+    // Adicionar cada ponto de coleta no mapa
     pontosDeColeta.forEach(function(ponto) {
-        L.marker(ponto.coords, { icon: createIcon(ponto.color) })
-        .bindPopup(
-            ponto.descricao)
+        L.marker(ponto.coords, { icon: createCircleIcon(ponto.color) }) // Atualize aqui
+        .bindPopup(ponto.descricao)
         .addTo(map);
-        });
+    });
 });
