@@ -101,6 +101,7 @@ section {
 
 .tipos-container, .locais-container {
     display: flex;
+    min-height: 800px;
     flex-direction: column;
     width: 720px;
     background-color: var(--theme-ui-colors-muted);
@@ -231,13 +232,8 @@ section {
     right: 10px;
 }
 
-.locais-container{
-    height: 800px;
-
-}
-
 #map {
-    height: 800px;
+    height: 300px;
     width: 80%;
 }
 
@@ -281,11 +277,6 @@ section {
 
 
 @media (max-width: 768px) {
-    .tipos-container, .locais-container {
-        width: 100%;
-        padding: 10px;
-    }
-
     .recicle-card {
         width: 90%;
     }
