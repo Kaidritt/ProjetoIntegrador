@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Cadastrar{% endblock %}
+{% load static %}
+{% block title %}Cadastro{% endblock %}
 
 {% block content %}
-<div class="form-container">
-    <h2>Cadastrar</h2>
-    <form method="post">
+<body>
+    <div class="signup-section">
+        <h2>Cadastre-se</h2>
+        <form method="post" action="{% url 'signup' %}" class="signup-form" id="signup-form">
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
@@ -24,7 +26,20 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit" class="button">Cadastrar</button>
-    </form>
-</div>
+        
+        {% if form.username.errors %}
+            <div class="error">{{ form.username.errors|striptags }}</div>
+        {% endif %}
+        {% if form.password2.errors %}
+            <div class="error">{{ form.password2.errors|striptags }}</div>
+        {% endif %}
+        {% if form.password1.errors %}
+            <div class="error">{{ form.password1.errors|striptags }}</div>
+        {% endif %}
+
+        <button type="submit" class="signup-button">CADASTRAR</button>
+        </form>
+    </div>
+    <script src="{% static 'js/script-signup.js' %}"></script>
+</body>
 {% endblock %}

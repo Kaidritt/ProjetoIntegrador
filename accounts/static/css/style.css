@@ -1,283 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    --theme-ui-colors-background: #FCFCFC;
-    --theme-ui-colors-primary: #259E73;
-    --theme-ui-colors-secondary: #fa98b8;
-    --theme-ui-colors-muted: #ACEBD4;
-    --theme-ui-colors-text: #13250a;
+    --background-color: #FBFBFB;
+    --section-color: #E9EAEC;
+    --secondary-color: #2e4032;
+    --accent-color: #803769;
+    --text-color: #404540;
+    --header-footer-color: #D6DBD5;
 }
 
+/* Reset */
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Merryweather', serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--header-footer-color);
+    padding: 1rem;
+}
+
+header nav {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+}
+
+header nav a {
+    color: var(--secondary-color);
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+header nav .login-button, .subscribe-button{
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header nav .subscribe-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--header-footer-color);
+}
+
+.greetings {
+    flex-grow: 1;
+}
+
+.header-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.password-change-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.password-change-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Cover */
+.cover {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--header-footer-color);
+    text-align: center;
+    overflow: hidden;
+}
+
+.cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/nature4.jpg') no-repeat center center/cover;
+    filter: blur(1.5px);
+    z-index: -1;
+}
+
+.cover h1 {
+    font-family: 'Raleway', sans-serif;
+    color: var(--background-color);
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.cover p {
+    font-family: 'Merryweather', sans-serif;
+    font-size: 1.5rem;
+}
+
+/* Artigos Recentes */
+.artigos-recentes {
+    background-color: var(--section-color);
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: 'Cabin';
-    background-color: var(--theme-ui-colors-background);
-    min-height: 100%;
+.artigos-recentes h2 {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 2rem;
+    font-size: 2rem;
 }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: var(--theme-ui-colors-primary);
-    color: var(--theme-ui-colors-background);
-    padding: 1em;
+/* Artigos Recentes */
+.artigos-recentes {
+    padding: 5rem;
     text-align: center;
-}
-
-header h1 {
-    margin: 15px;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-a {
-    color: var(--theme-ui-colors-background);;
-    text-decoration: none;
-}
-
-.header-buttons-container {
-    margin-left: auto;
-    display: flex;
-}
-
-.button-entrar, .button-cadastrar {
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button-entrar {
-    background-color: var(--theme-ui-colors-background);
-    color: var(--theme-ui-colors-primary);
-}
-
-.button-entrar:hover {
-    background-color: var(--theme-ui-colors-secondary);
-}
-
-.button-cadastrar {
-    background-color: transparent;
-    color: var(--theme-ui-colors-text);
-    border: 1px solid var(--theme-ui-colors-text);
-    margin-left: 10px;
-}
-
-.button-cadastrar:hover {
-    background-color: #f5f5f5;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 1em;
-    color: #333;
-    background-color: var(--theme-ui-colors-background);
-}
-
-section {
-    margin-bottom: 30px;
-}
-
-.tipos-section, .locais-section {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    
-}
-
-.tipos-container, .locais-container {
-    display: flex;
-    min-height: 800px;
-    flex-direction: column;
-    width: 720px;
-    background-color: var(--theme-ui-colors-muted);
-    border-radius: 8px;
-}
-
-.tipos-container button {
-    margin: 10px;
-}
-
-.tipos-item, .locais-item {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
-
-.tipos-img, .locais-img {
-    width: 45px;
-    height: auto;
-    margin-right: 15px;
-}
-
-.tipos-input, .locais-input {
-    flex: 1;
-    height: 30px;
-    padding: 10px;
-    border: 1px solid var(--theme-ui-colors-secondary);
-    border-radius: 4px;
-}
-
-.resultados-container {
-    margin-top: 20px;
-}
-
-.residuo-item {
-    background-color: #f1f1f1;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.locais-container h2 {
-    text-align: center;
-    margin: 20px;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-.locais-container button {
-    margin: 10px;
-}
-
-.button {
-    padding: 10px 15px;
-    background-color: var(--theme-ui-colors-primary);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: .9rem;
-}
-
-.button:hover {
-    background-color: var(--theme-ui-colors-secondary);
-}
-
-/* Carousel styles */
-#carousel {
-    position: relative;
     width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
 }
 
-#carousel-container {
+.artigos-recentes h2 {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    min-width: 70vw;
+}
+
+
+.carrossel {
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
+    padding: 2rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px 0;
     justify-content: center;
-    align-items: center;
 }
 
-.recicle-card {
-    width: 320px;
-    height: 400px;
-    flex-shrink: 0;
-    background-color: var(--theme-ui-colors-background);
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; 
-    text-align: center;
-    scroll-snap-align: start;
+.card {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    flex: 0 0 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 400px;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    max-height: 185px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 }
 
-.recicle-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
+.card h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    background-color: var(--theme-ui-colors-muted);
-    opacity: 0.8;
-    color: var(--theme-ui-colors-primary);
-    border: none;
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.card p {
+    font-family: 'Merryweather';
+    font-size: 1.1rem;
+    margin: 0.5rem;
+}
+
+.card button {
+    background: none;
+    font-weight: bold;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    font-family: 'Raleway', sans-serif;
+    padding: 0.5rem;
+    margin: 0 2rem;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-#prevBtn {
-    left: 10px;
+.card button:hover {
+    background-color: var(--secondary-color);
+    font-weight: bold;
+    border: 2px solid var(--section-color);
+    color: var(--section-color);
 }
 
-#nextBtn {
-    right: 10px;
+/* Nossa missão*/
+.nossa-missao {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
-#map {
-    height: 300px;
-    width: 80%;
+.imagem {
+    flex: 1;
+    height: 100%;
 }
 
-.form-container {
-    background-color: var(--theme-ui-colors-muted);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 600px;
+.imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nossa-missao-conteudo {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
     text-align: center;
-    margin: 80px auto; /* Adicione margem superior para evitar sobreposição */
 }
 
-.form-container h2{
-    color: var(--theme-ui-colors-text);
-    font-size: 1.4rem;
-    margin: 5px;
-    padding: 5px;
+.nossa-missao-conteudo h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-.form-container input{
-    width: calc(100% - 22px);
-    height: 40px;
-    font-size: 16px;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid var(--theme-ui-colors-secondary);
-    border-radius: 4px;
-    box-sizing: border-box;
+.nossa-missao-conteudo p {
+    font-family: 'Merryweather';
+    font-size: 1.3rem;
+    margin: 2rem 5rem;
+}
+
+/* Inscrição */
+.inscricao {
+    background-color: var(--section-color);
+    color: var(--text-color);
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.inscricao h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.inscricao p {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.inscricao form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.inscricao input[type="email"] {
+    padding: 0.7rem;
+    border: 2px solid var(--secondary-color);
+    background: var(--section-color);
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+.inscricao button {
+    padding: 0.7rem 1.2rem;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.inscricao button:hover {
+    background-color: var(--secondary-color);
+    color: var(--section-color);
+    font-weight: bold;
+}
+
+/* Página de Cadastro */
+.signup-section {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 5rem auto;
+    width: 90%;
+    max-width: 400px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup-section h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.signup-form .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.signup-form .form-group label {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="password"],
+.signup-form input[type="email"] {
+    width: 100%;
+    padding: 0.7rem;
+    border: 2px solid var(--secondary-color);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}
+
+.signup-button {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    margin: 3rem 0;
+    padding: 0.7rem;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.signup-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--header-footer-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--header-footer-color);
+    padding: 1rem;
+    text-align: center;
+}
+
+footer p {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 1rem;
+}
+
+footer .social-links a {
+    color: var(--secondary-color);
+    margin: 0 0.5rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Página de Login */
+.login-section {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 5rem auto;
+    width: 90%;
+    max-width: 50vw;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-section h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+.form-group label {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--secondary-color);
 }
 
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 0.7rem;
+    border: 2px solid var(--secondary-color);
+    font-family: 'Raleway', serif;
+    font-size: 1rem;
+}
 
-@media (max-width: 768px) {
-    .recicle-card {
-        width: 90%;
+.login-button {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    margin: 3rem;
+    padding: 0.7rem;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--header-footer-color);
+}
+
+.forgot-password-link {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+
+/* Seção Tipos de Resíduo */
+.search-section {
+    max-width: 600px; /* Adjust width as needed */
+    margin: 1rem auto; /* Center horizontally */
+    padding: 1rem;
+    text-align: center;
+}
+
+.search-section h1 {
+    font-family: 'Raleway';
+    font-size: 3rem;
+}
+
+.residuos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.residuo {
+    background-color: var(--header-footer-color);
+    color: var(--secondary-color);
+    padding: 0.5rem;
+    text-align: center;
+    width: 15rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+}
+
+.residuo h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.residuo img {
+    width: 100px;
+    height: auto;
+    margin: 0.5rem 0;
+}
+
+.residuo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Seção de Busca */
+.search-section input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.7rem;
+    margin: 1rem 0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+}
+
+#lista-residuo {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+#lista-residuo li {
+    font-family: 'Raleway', sans-serif;
+    color: var(--secondary-color);
+    padding: 0.5rem 0;
+}
+
+#no-results {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Seção de Pontos de Coleta */
+.locais-section {
+    background-color: var(--section-color);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+/* Título da Seção */
+.locais-section h2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+}
+
+/* Mapa */
+#map {
+    height: 70vh;
+    width: 100%;
+}
+
+.leaflet-popup-content {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+@media (max-width: 900px) {
+    header nav {
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 0 0 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cover h1 {
+        font-size: 2rem;
+    }
+
+    .inscricao h2 {
+        font-size: 1.5rem;
     }
 }

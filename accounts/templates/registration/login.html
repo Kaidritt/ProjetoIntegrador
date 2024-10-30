@@ -1,20 +1,59 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% load static %}
+
+{% block title %}Log In{% endblock %}
 
 {% block content %}
-    <div class="form-container">
-        <h2>Login</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div>
-                <label for="{{ form.username.id_for_label }}">Usuário</label>
-                {{ form.username }}
-            </div>
-            <div>
-                <label for="{{ form.password.id_for_label }}">Senha</label>
-                {{ form.password }}
-            </div>
-            <button type="submit" class="button">Entrar</button>
-        </form>
+<section class="login-section">
+    <h2>Log In</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+        <ul class="messages">
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        </ul>
+        {% endfor %}
+    {% endif %}
+    <form method="post" class="login-form" id="loginForm">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Usuário</label>
+            {{ form.username }}  <!-- Django will keep the input value if there's an error -->
+            {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
+                Usuário/senha inválido!
+                {% else %}
+                    {{ error }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">Senha</label>
+            {{ form.password }}  <!-- Django will keep the input value if there's an error -->
+            {% if form.password.errors %}
+                <div class="alert alert-danger">
+                    {{ form.password.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="login-button">Log In</button>
+    </form>
+
+    <div class="forgot-password">
+        <a href="{% url 'password_reset' %}" class="forgot-password-link">Esqueci a senha</a>
     </div>
+</section>
 {% endblock %}

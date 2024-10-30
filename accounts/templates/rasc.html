@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Tipos de Resíduo{% endblock %}
+{% block content %}
+    <div class="search-section">
+        <h1>TIPOS DE RESÍDUO</h1>
+        <div class="form-group">
+            <input type="text" id="search" placeholder="Digite o tipo de resíduo" aria-label="Buscar tipos de resíduo"/>
+        </div>
+
+        <!-- Initially hide the list of search options -->
+        <ul id="lista-residuo" style="display: none;">
+            {% for residuo in residuos %}
+                <li>{{ residuo }}</li>
+            {% endfor %}
+        </ul>
+        
+        <p id="noResults" style="display: none;">Tipo de resíduo não encontrado</p>
+    </div>
+
+    <!-- Always display the images for each 'residuo' type -->
+    <div class="residuos">
+        <div class="residuo">
+            <h2>Papel</h2>
+            <img src="{% static 'images/paper-nobg.png' %}" alt="Bola de papel">
+        </div>
+        <div class="residuo">
+            <h2>Plástico</h2>
+            <img src="{% static 'images/plastic-nobg.png' %}" alt="Sacola plástica">
+        </div>
+        <div class="residuo">
+            <h2>Metal</h2>
+            <img src="{% static 'images/soda-cans-nobg.png' %}" alt="Latas de alumínio">
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/script-tipos.js' %}"></script> 
+{% endblock %}

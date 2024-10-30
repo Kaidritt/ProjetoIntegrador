@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>{% block title %}ResíduoZero{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>{% block title %}Descarte Consciente{%endblock%}</title>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>ResíduoZero</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#tipos">Tipos de Resíduos</a></li>
-                <li><a href="#dicas">Dicas de Reciclagem</a></li>
-                <li><a href="#locais">Locais de Coleta</a></li>
-                <li class="header-buttons-container">
+        <div class="header-container">
+            <nav>
+                <div class="greetings">
                     {% if user.is_authenticated %}
-                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="button-entrar">Log Out</button>
-                        </form>
-                    {% else %}
-                        <a href="{% url 'login' %}" class="button-entrar">Entrar</a>
-                        <a href="{% url 'signup' %}" class="button-cadastrar">Cadastrar</a>
+                        <h1>Olá, {{ user.username }}!</h1>
+                        <p><a href="{% url 'password_change' %}">Alterar senha</a></p>
                     {% endif %}
-                </li>
-            </ul>
-        </nav>
+                </div>
+                <a href="{% url 'home' %}">HOME</a>
+                <a href="{% url 'tipos-de-residuo' %}">TIPOS DE RESÍDUO</a>
+                <a href="{% url 'pontos-de-coleta' %}">PONTOS DE COLETA</a>
+                <div class="header-buttons-container">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="login-button">Sair</button>
+                    </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="login-button">ENTRAR</a>
+                        <a href="{% url 'signup' %}" class="subscribe-button">CADASTRE-SE</a>
+                    {% endif %}
+                </div> 
+            </nav>
+        </div>
     </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+
+    <!-- Main content block -->
+    {% block content %}
+    <!-- Child template content will be injected here -->
+    {% endblock %}
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 ResíduoZero. Todos os direitos reservados.</p>
+        <p>SIGA-NOS</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
     </footer>
 </body>
 </html>

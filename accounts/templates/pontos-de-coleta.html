@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Pontos de Coleta{% endblock %}
+
+{% block content %}
+<section id="locais" class="locais-section">
+    <h2>ENCONTRE PONTOS DE COLETA DE RESÍDUOS</h2>
+    <div id="map"></div>  <!-- Set the height for the map -->
+</section>
+
+<!-- Include Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Include your custom script -->
+<script src="{% static 'js/script-map.js' %}"></script>
+{% endblock %}

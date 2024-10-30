@@ -1,68 +1,70 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% load static %} 
-
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-</head>
-<body>
-    {% if user.is_authenticated %}
-        <h1>Olá, {{ user.username }}!</h1>
-        <p><a href="{% url 'password_change' %}">Alterar senha</a></p>
-    {% endif %}
-    <main>
-        <section id="tipos" class="tipos-section">
-            <div class="tipos-container">
-                <div class="tipos-item">
-                    <img src="{% static 'img/recycle.svg' %}" alt="Ícone de reciclagem" class="tipos-img">
-                    <input type="text" id="residuoSearch" placeholder="Procure por um tipo de resíduo" class="tipos-input">
-                    <div id="resultados" class="resultados-container"></div>
-                    <button type="button" class="button">Procurar</button>
-                </div>
-            </div>
-        </section>
+    <!-- Cover -->
+    <section class="cover">
+        <div class="cover-content">
+            <h1>DESCARTE CONSCIENTE</h1>
+            <p>Transformando resíduos em recursos</p>
+        </div>
+    </section>
 
-        <section id="carousel">
-            <div id="carousel-container">
-                <div class="recicle-card">
-                    <img src="{% static 'img/recicle_mais2.png' %}" alt="Embalagens recicláveis em uma cesta" class="recicle-card-img">
-                    <h3>Como reciclar mais sem esforço</h3>
-                    <a href="recicle_mais.html" class="button">Saiba mais</a>
-                </div>
-                <div class="recicle-card">
-                    <img src="{% static 'img/plastico_simbolo.png' %}" alt="Símbolo de plástico reciclável" class="recicle-card-img">
-                    <h3>Entendendo os símbolos de reciclagem</h3>
-                    <a href="dicas_reciclagem.html" class="button">Saiba mais</a>
-                </div>
-                <div class="recicle-card">
-                    <img src="{% static 'img/lixo_contaminado.jpg' %}" alt="Embalagens de lixo contaminado" class="recicle-card-img">
-                    <h3>Como reduzir a contaminação dos resíduos</h3>
-                    <a href="reciclagem_criativa.html" class="button">Saiba mais</a>
+    <!-- Artigos Recentes -->
+    <section class="artigos-recentes">
+        <h2>ARTIGOS RECENTES</h2>
+        <div class="carrossel">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="{% static 'images/chocolate-bars.jpg' %}" alt="Embalagens laminadas diversas">
+                <div class="card-content">
+                    <h3>EMBALAGENS LAMINADAS</h3>
+                    <p>Plástico? Metal? Reciclável? Entenda.</p>
+                    <button>SAIBA MAIS</button>
                 </div>
             </div>
-            
-            <button id="prevBtn" class="carousel-btn">❮</button>
-            <button id="nextBtn" class="carousel-btn">❯</button>
-        </section>
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="{% static 'images/soap.jpg' %}" alt="Barra de sabão artesanal">
+                <div class="card-content">
+                    <h3>SUSTENSOAP</h3>
+                    <p>Conheça o app de fórmulas de sabão sustentáveis.</p>
+                    <button>SAIBA MAIS</button>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="{% static 'images/ods.jpg' %}" alt="Cartões dos Objetivos de Desenvolvimento Sustentável">
+                <div class="card-content">
+                    <h3>ODS</h3>
+                    <p>Entenda o que são os Objetivos do Desenvolvimento Sustentável.</p>
+                    <button>SAIBA MAIS</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="locais" class="locais-section">
-            <div class="locais-container">
-                <h2>Encontre pontos de coleta de resíduos perto de você</h2>
-                <div class="locais-item">
-                    <img src="{% static 'img/location.svg' %}" alt="Ícone de mapa" class="locais-img">
-                    <input type="text" id="localSearch" placeholder="Procure por um local de coleta" class="locais-input">
-                    <button type="button" class="button">Procurar</button>
-                </div>
-                <div id="map"></div>
-            </div>
-        </section>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>    
+    <!-- Recicle -->
+    <section class="nossa-missao">
+        <div class="imagem">
+            <img src="{% static 'images/nature5.jpg' %}" alt="Folhagens">
+        </div>
+        <div class="nossa-missao-conteudo">
+            <h3>REDUZA, REUTILIZE, RECICLE</h3>
+            <p>Acreditamos que pequenas ações podem gerar grandes mudanças. Em um mundo onde os recursos naturais estão se esgotando, a consciência ecológica se torna essencial. Reduzir o consumo, reutilizar objetos e reciclar materiais são práticas que não apenas minimizam o impacto ambiental, mas também promovem um estilo de vida mais sustentável.</p>
+        </div> 
+    </section>
+
+    <!-- Inscrição -->
+    <section class="inscricao">
+        <h2>INSCREVA-SE</h2>
+        <p>Receba notícias e dicas sobre descarte consciente de resíduos</p>
+        <form>
+            <input type="email" placeholder="Digite seu e-mail" required>
+            <button type="submit">ENVIAR</button>
+        </form>
+    </section>
+    <script src="{% static 'js/script-home.js' %}"></script>
 {% endblock %}
