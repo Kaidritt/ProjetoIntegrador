@@ -131,8 +131,4 @@ Crie uma nova branch:
 ---
 
 📧 Contato
-Para dúvidas ou sugestões, entre em contato pelo e-mail: seu-email@exemplo.com.
-
-  ```perl
-  Esse trecho agora está no formato correto de Markdown para ser copiado e colado diretamente no seu
-  ```
+Para dúvidas ou sugestões, entre em contato pelo e-mail: nicolepaloschi@gmail.com.
