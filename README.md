@@ -71,6 +71,8 @@
   http://127.0.0.1:8000
   ```
 
+---
+
 ## 📦 Estrutura do Projeto
 
 A estrutura básica do projeto é a seguinte:
@@ -89,6 +91,8 @@ reciclo/
 └── README.md               # Este arquivo
 ```
 
+---
+
 🌍 API de Geocodificação (Nominatim)
 A aplicação utiliza a API Nominatim para converter endereços em coordenadas geográficas. A integração é feita através de requisições HTTP, e os resultados são utilizados para posicionar os pontos de coleta no mapa interativo.
 
@@ -97,3 +101,38 @@ Exemplo de requisição:
 ```http
 GET https://nominatim.openstreetmap.org/search?q=Rua+Exemplo,+123&format=json
 ```
+
+---
+
+🛡️ Licença
+Este projeto é licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+
+---
+
+🤝 Contribuições
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e enviar pull requests.
+
+**Fork o repositório.**
+Crie uma nova branch:
+  ```bash
+  git checkout -b feature/nova-funcionalidade
+  ```
+
+**Faça suas alterações e commit:**
+  ```bash
+  git commit -m "Adiciona nova funcionalidade"
+  ```
+
+**Envie a branch:**
+  ```bash
+  git push origin feature/nova-funcionalidade
+  ```
+
+---
+
+📧 Contato
+Para dúvidas ou sugestões, entre em contato pelo e-mail: seu-email@exemplo.com.
+
+  ```perl
+  Esse trecho agora está no formato correto de Markdown para ser copiado e colado diretamente no seu
+  ```
