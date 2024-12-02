@@ -71,7 +71,11 @@
   http://127.0.0.1:8000
   ```
 
-📦 Estrutura do Projeto
+## 📦 Estrutura do Projeto
+
+A estrutura básica do projeto é a seguinte:
+
+```plaintext
 reciclo/
 ├── core/                   # Aplicação principal
 │   ├── models.py           # Modelos de dados
@@ -83,6 +87,7 @@ reciclo/
 ├── manage.py               # Gerenciador do Django
 ├── requirements.txt        # Dependências do projeto
 └── README.md               # Este arquivo
+```
 
 🌍 API de Geocodificação (Nominatim)
 A aplicação utiliza a API Nominatim para converter endereços em coordenadas geográficas. A integração é feita através de requisições HTTP, e os resultados são utilizados para posicionar os pontos de coleta no mapa interativo.
