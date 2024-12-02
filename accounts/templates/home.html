@@ -3,12 +3,15 @@
 {% load static %}
 {% block title %}Home{% endblock %}
 
+<<<<<<< HEAD
 {% block scripts %}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="{% static 'js/script-home.js' %}" defer></script>
     <script src="{% static 'js/script-map.js' %}" defer></script>
 {% endblock %}
 
+=======
+>>>>>>> 9dcea6763e8cea453eca887553f1b1a45316fb38
 {% block content %}
     <!-- Cover -->
     <section class="cover">
@@ -18,12 +21,49 @@
         </div>
     </section>
 
+<<<<<<< HEAD
     <!-- Mapa -->
     <section id="locais" class="locais-section">
         <h2>ENCONTRE PONTOS DE COLETA DE RESÍDUOS</h2>
         <div id="map"></div>
     </section>
     
+=======
+    <!-- Artigos Recentes -->
+    <section class="artigos-recentes">
+        <h2>ARTIGOS RECENTES</h2>
+        <div class="carrossel">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="{% static 'images/chocolate-bars.jpg' %}" alt="Embalagens laminadas diversas">
+                <div class="card-content">
+                    <h3>EMBALAGENS LAMINADAS</h3>
+                    <p>Plástico? Metal? Reciclável? Entenda.</p>
+                    <button>SAIBA MAIS</button>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="{% static 'images/soap.jpg' %}" alt="Barra de sabão artesanal">
+                <div class="card-content">
+                    <h3>SUSTENSOAP</h3>
+                    <p>Conheça o app de fórmulas de sabão sustentáveis.</p>
+                    <button>SAIBA MAIS</button>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="{% static 'images/ods.jpg' %}" alt="Cartões dos Objetivos de Desenvolvimento Sustentável">
+                <div class="card-content">
+                    <h3>ODS</h3>
+                    <p>Entenda o que são os Objetivos do Desenvolvimento Sustentável.</p>
+                    <button>SAIBA MAIS</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+>>>>>>> 9dcea6763e8cea453eca887553f1b1a45316fb38
     <!-- Recicle -->
     <section class="nossa-missao">
         <div class="imagem">
@@ -44,4 +84,8 @@
             <button type="submit">ENVIAR</button>
         </form>
     </section>
+<<<<<<< HEAD
+=======
+    <script src="{% static 'js/script-home.js' %}"></script>
+>>>>>>> 9dcea6763e8cea453eca887553f1b1a45316fb38
 {% endblock %}

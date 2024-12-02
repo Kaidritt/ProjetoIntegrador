@@ -2,6 +2,7 @@
 
 {% load static %}
 
+<<<<<<< HEAD
 {% block scripts %}
     <script src="{% static 'js/script-tipos.js' %}"></script>
 {% endblock %}
@@ -41,4 +42,37 @@
             <a href="{% url 'criar_residuo' %}">Cadastrar Novo Tipo de Resíduo</a>
         {% endif %}
     </div>
+=======
+{% block title %}Tipos de Resíduo{% endblock %}
+{% block content %}
+    <div class="search-section">
+        <h1>TIPOS DE RESÍDUO</h1>
+        <input type="text" id="search" placeholder="Digite para pesquisar...">
+
+        <!-- Inicialmente oculta a lista de opções -->
+        <ul id="lista-residuo" style="display: none;">
+            {% for residuo in residuos %}
+                <li>{{ residuo.name }}</li>
+            {% endfor %}
+            <li id="no-results" style="display: none;">Nenhum resultado</li>
+        </ul>
+        
+        <div class="residuos">
+            <div class="residuo">
+                <h2>Papel</h2>
+                <img src="{% static 'images/paper-nobg.png' %}" alt="Bola de papel">
+            </div>
+            <div class="residuo">
+                <h2>Plástico</h2>
+                <img src="{% static 'images/plastic-nobg.png' %}" alt="Sacola plástica">
+            </div>
+            <div class="residuo">
+                <h2>Metal</h2>
+                <img src="{% static 'images/soda-cans-nobg.png' %}" alt="Latas de alumínio">
+            </div>
+        </div>    
+    </div>
+
+    <script src="{% static 'js/script-tipos.js' %}"></script> 
+>>>>>>> 9dcea6763e8cea453eca887553f1b1a45316fb38
 {% endblock %}
