@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block scripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static 'js/script-home.js' %}" defer></script>
+    <script src="{% static 'js/script-map.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <!-- Cover -->
+    <section class="cover">
+        <div class="cover-content">
+            <h1>DESCARTE CONSCIENTE</h1>
+            <p>Transformando resíduos em recursos</p>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section id="locais" class="locais-section">
+        <h2>ENCONTRE PONTOS DE COLETA DE RESÍDUOS</h2>
+        <div id="map"></div>
+    </section>
+    
+    <!-- Recicle -->
+    <section class="nossa-missao">
+        <div class="imagem">
+            <img src="{% static 'images/nature5.jpg' %}" alt="Folhagens">
+        </div>
+        <div class="nossa-missao-conteudo">
+            <h3>REDUZA, REUTILIZE, RECICLE</h3>
+            <p>Acreditamos que pequenas ações podem gerar grandes mudanças. Em um mundo onde os recursos naturais estão se esgotando, a consciência ecológica se torna essencial. Reduzir o consumo, reutilizar objetos e reciclar materiais são práticas que não apenas minimizam o impacto ambiental, mas também promovem um estilo de vida mais sustentável.</p>
+        </div> 
+    </section>
+
+    <!-- Inscrição -->
+    <section class="inscricao">
+        <h2>INSCREVA-SE</h2>
+        <p>Receba notícias e dicas sobre descarte consciente de resíduos</p>
+        <form>
+            <input type="email" placeholder="Digite seu e-mail" required>
+            <button type="submit">ENVIAR</button>
+        </form>
+    </section>
+{% endblock %}

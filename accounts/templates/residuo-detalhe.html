@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do Resíduo{% endblock %}
+
+{% block content %}
+    <div class="residuo-detail-container">
+        <h1 class="residuo-title">{{ residuo.tipoResiduo }}</h1>
+        
+        <div class="residuo-detail">
+            <p><strong>Descrição:</strong> {{ residuo.descricao }}</p>
+            <p><strong>Diretrizes de descarte:</strong> {{ residuo.diretrizes }}</p>
+            
+            {% if residuo.image %}
+                <img src="{{ residuo.image.url }}" alt="{{ residuo.tipoResiduo }}" class="residuo-image">
+            {% else %}
+                <p class="image-not-available">Imagem não disponível</p>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'tipos_residuo' %}" class="back-link">Voltar</a>
+    </div>
+{% endblock %}

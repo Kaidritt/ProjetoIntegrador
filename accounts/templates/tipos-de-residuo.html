@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static 'js/script-tipos.js' %}"></script>
+{% endblock %}
+
+{% block title %}Tipos de Resíduo{% endblock %}
+
+{% block content %}
+    <div class="search-section">
+        <h1>TIPOS DE RESÍDUO</h1>
+        
+        <!-- Search input field with the value of the search term from context -->
+        <input type="text" id="search" placeholder="Digite para pesquisar..." value="{{ search_term }}" oninput="filterResiduos()">
+        
+        <!-- Lista dinâmica de resíduos -->
+        <div class="residuos">
+            {% if residuos %}
+                {% for residuo in residuos %}
+                <a href="{% url 'residuo_detalhe' residuo.pk %}" class="residuo-card-link">
+                    <div class="residuo" data-name="{{ residuo.tipoResiduo }}">
+                        <h2>{{ residuo.tipoResiduo }}</h2>
+                        <!-- Dynamically load image from the database -->
+                        {% if residuo.image %}
+                            <img src="{{ residuo.image.url }}" alt="{{ residuo.tipoResiduo }}">
+                        {% else %}
+                            <p class="image-not-available">Imagem não disponível</p>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <p>A pesquisa não encontrou nenhum resultado.</p>
+            {% endif %}
+        </div>
+
+        {% if user.is_staff %}
+        <!-- Exibe o link para cadastro de novo resíduo apenas para admin -->
+            <a href="{% url 'criar_residuo' %}">Cadastrar Novo Tipo de Resíduo</a>
+        {% endif %}
+    </div>
+{% endblock %}
