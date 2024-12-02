@@ -66,7 +66,7 @@
    python manage.py runserver
    ```
 
-6. **Acesse no navegador:
+6. **Acesse no navegador:**
    ```http
    http://127.0.0.1:8000
    ```
