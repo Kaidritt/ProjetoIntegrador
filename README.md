@@ -42,34 +42,34 @@
    ```
    
 2. **Crie e ative o ambiente virtual:**
-  ```bash
-  python -m venv venv
-  source venv/bin/activate  # Linux/macOS
-  venv\Scripts\activate     # Windows
-  ```
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/macOS
+   venv\Scripts\activate     # Windows
+   ```
 
 3. **Instale as dependências:**
-  ```bash
-  pip install -r requirements.txt
-  ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. **Configure as variáveis de ambiente: crie um arquivo .env na raiz do projeto com as seguintes informações:**
-  ```bash
-  SECRET_KEY=your_secret_key
-  DEBUG=True
-  NOMINATIM_URL=https://nominatim.openstreetmap.org/search
-  ```
+   ```bash
+   SECRET_KEY=your_secret_key
+   DEBUG=True
+   NOMINATIM_URL=https://nominatim.openstreetmap.org/search
+   ```
 
 5. **Aplique as migrações e inicie o servidor:**
-  ```bash
-  python manage.py migrate
-  python manage.py runserver
-  ```
+   ```bash
+   python manage.py migrate
+   python manage.py runserver
+   ```
 
 6. **Acesse no navegador:
-  ```http
-  http://127.0.0.1:8000
-  ```
+   ```http
+   http://127.0.0.1:8000
+   ```
 
 ---
 
@@ -77,19 +77,19 @@
 
 A estrutura básica do projeto é a seguinte:
 
-```plaintext
-reciclo/
-├── core/                   # Aplicação principal
-│   ├── models.py           # Modelos de dados
-│   ├── views.py            # Lógica de exibição
-│   ├── forms.py            # Formulários
-│   └── ...
-├── templates/              # Templates HTML
-├── static/                 # Arquivos estáticos (CSS, JS, imagens)
-├── manage.py               # Gerenciador do Django
-├── requirements.txt        # Dependências do projeto
-└── README.md               # Este arquivo
-```
+   ```plaintext
+   reciclo/
+   ├── core/                   # Aplicação principal
+   │   ├── models.py           # Modelos de dados
+   │   ├── views.py            # Lógica de exibição
+   │   ├── forms.py            # Formulários
+   │   └── ...
+   ├── templates/              # Templates HTML
+   ├── static/                 # Arquivos estáticos (CSS, JS, imagens)
+   ├── manage.py               # Gerenciador do Django
+   ├── requirements.txt        # Dependências do projeto
+   └── README.md               # Este arquivo
+   ```
 
 ---
 
@@ -98,9 +98,9 @@ A aplicação utiliza a API Nominatim para converter endereços em coordenadas g
 
 Exemplo de requisição:
 
-```http
-GET https://nominatim.openstreetmap.org/search?q=Rua+Exemplo,+123&format=json
-```
+   ```http
+   GET https://nominatim.openstreetmap.org/search?q=Rua+Exemplo,+123&format=json
+   ```
 
 ---
 
@@ -114,19 +114,19 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e enviar 
 
 **Fork o repositório.**
 Crie uma nova branch:
-  ```bash
-  git checkout -b feature/nova-funcionalidade
-  ```
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
 
 **Faça suas alterações e commit:**
-  ```bash
-  git commit -m "Adiciona nova funcionalidade"
-  ```
+   ```bash
+   git commit -m "Adiciona nova funcionalidade"
+   ```
 
 **Envie a branch:**
-  ```bash
-  git push origin feature/nova-funcionalidade
-  ```
+   ```bash
+   git push origin feature/nova-funcionalidade
+   ```
 
 ---
 
