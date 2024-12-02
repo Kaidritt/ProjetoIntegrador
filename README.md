@@ -67,7 +67,7 @@
   ```
 
 6. **Acesse no navegador:
-  ```bash
+  ```http
   http://127.0.0.1:8000
   ```
 
@@ -94,6 +94,6 @@ A aplicação utiliza a API Nominatim para converter endereços em coordenadas g
 
 Exemplo de requisição:
 
-```bash
+```http
 GET https://nominatim.openstreetmap.org/search?q=Rua+Exemplo,+123&format=json
 ```
