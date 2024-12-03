@@ -255,6 +255,12 @@ footer .social-links a {
     margin-bottom: 2rem;
 }
 
+#password-reset-done {
+    font-family: 'Raleway', sans-serif;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
 /* General style for all messages */
 .messages {
     font-family: 'Raleway', sans-serif;

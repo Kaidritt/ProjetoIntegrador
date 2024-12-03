@@ -18,7 +18,6 @@ from django.utils.encoding import force_bytes
 from .models import Residuo
 from .forms import ResiduoForm, CustomUserCreationForm
 
-
 @method_decorator(csrf_exempt, name='dispatch')
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm  # Use the custom form with the email field
@@ -39,7 +38,7 @@ class SignUpView(CreateView):
         # Send confirmation email
         mail_subject = 'Activate your account'
         message = render_to_string(
-            'registration/account/activation_email.html',  # Create this template
+            'registration/account/activation_email.html',
             {
                 'user': user,
                 'domain': get_current_site(self.request).domain,
@@ -47,12 +46,18 @@ class SignUpView(CreateView):
                 'token': token,
             }
         )
-        send_mail(mail_subject, message, 'no-reply@mydomain.com', [user.email])
+        
+        try:
+            send_mail(mail_subject, message, 'no-reply@mydomain.com', [user.email])
+        except Exception as e:
+            # You can log the error or handle it as needed
+            messages.error(self.request, "Ocorreu um erro ao enviar o e-mail de confirmação. Tente novamente mais tarde.")
+            return redirect('signup')  # Or handle it differently
 
         # Inform the user that the confirmation email has been sent
-        messages.info(self.request, "Um email de confirmação foi enviado para sua conta. Por favor, verifique sua caixa de entrada.")
-
-        return response
+        messages.info(self.request, "Um e-mail de confirmação foi enviado para sua conta. Por favor, verifique sua caixa de entrada.")
+        
+        return response  # Continue with the normal form processing
     
 def activate(request, uidb64, token):
     try:
