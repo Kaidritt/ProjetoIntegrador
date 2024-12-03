@@ -1,20 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, get_user_model
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.models import User
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib import messages
-from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView
+from django.views.generic.detail import DetailView
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import CreateView
+from django.contrib import messages
 from django.utils.decorators import method_decorator
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-
 from .models import Residuo
 from .forms import ResiduoForm, CustomUserCreationForm
 
@@ -26,51 +19,44 @@ class SignUpView(CreateView):
     template_name = "registration/signup.html"
 
     def form_valid(self, form):
-        # Call the parent method to create the user
+        # Call the parent method and store the response
         response = super().form_valid(form)
+        # Add success message after registration
+        messages.success(self.request, "Usuário cadastrado com sucesso.")
         
-        # Retrieve the user instance
-        user = self.object
-
-        # Generate a token for email confirmation
-        token = default_token_generator.make_token(user)
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-
-        # Send confirmation email
-        mail_subject = 'Activate your account'
-        message = render_to_string(
-            'registration/account/activation_email.html',  # Create this template
-            {
-                'user': user,
-                'domain': get_current_site(self.request).domain,
-                'uid': uid,
-                'token': token,
-            }
-        )
-        send_mail(mail_subject, message, 'no-reply@mydomain.com', [user.email])
-
-        # Inform the user that the confirmation email has been sent
-        messages.info(self.request, "Um email de confirmação foi enviado para sua conta. Por favor, verifique sua caixa de entrada.")
-
-        return response
+        # Limpa a fila de mensagens de erro após o sucesso
+        if '_messages' in self.request.session:
+            del self.request.session['_messages']
     
-def activate(request, uidb64, token):
-    try:
-        # Decode UID and get the user
-        uid = urlsafe_base64_decode(uidb64).decode()
-        user = get_user_model().objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
+        return response
 
-    # Check if the token is valid
-    if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True  # Activate the user
-        user.save()
-        messages.success(request, "Sua conta foi ativada com sucesso!")
-        return redirect('login')  # Redirect to login page
-    else:
-        messages.error(request, "Link de ativação inválido ou expirado.")
-        return redirect('home')  # Redirect to home page or any other page
+    def form_invalid(self, form):
+        # Check for errors specific to username, password, and email
+        if 'username' in form.errors:
+            username_error = form.errors['username']
+            if "A user with that username already exists." in username_error:
+                messages.error(self.request, "Nome de usuário já cadastrado!")
+
+        if 'password2' in form.errors:
+            password_error = form.errors['password2']
+            if "The two password fields didn’t match." in password_error:
+                messages.error(self.request, "Senhas não conferem.")
+
+        if 'password1' in form.errors:
+            password1_error = form.errors['password1']
+            if "This password is too similar to the username." in password1_error:
+                messages.error(self.request, "A senha é muito similar ao nome de usuário.")
+        
+        # Check for email errors, e.g., invalid email format or email already in use
+        if 'email' in form.errors:
+            email_error = form.errors['email']
+            if "Enter a valid email address." in email_error:
+                messages.error(self.request, "Por favor, insira um e-mail válido.")
+            elif "This field must be unique." in email_error:
+                messages.error(self.request, "Este e-mail já está em uso.")
+
+        # Call the parent method to return the appropriate response
+        return super().form_invalid(form)
 
 #@csrf_exempt  # Use isso apenas para desenvolvimento; em produção, use CSRF corretamente
 #class SubscribeView(View):

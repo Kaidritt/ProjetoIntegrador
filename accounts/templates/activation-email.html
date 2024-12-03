@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Ativar Conta{% endblock %}
+
+{% block content %}
+    <title>Ativar Conta</title>
+
+    <p>Olá {{ user.username }},</p>
+    <p>Obrigado por se cadastrar em nosso site! Clique no link abaixo para ativar sua conta:</p>
+    <p><a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Ativar minha conta</a></p>
+{% endblock %}

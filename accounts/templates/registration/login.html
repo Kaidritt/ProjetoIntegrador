@@ -4,56 +4,58 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
-<section class="login-section">
+<div class="signup-section">
     <h2>Log In</h2>
 
     {% if messages %}
-        {% for message in messages %}
-        <ul class="messages">
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        </ul>
-        {% endfor %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
-    <form method="post" class="login-form" id="loginForm">
+
+    <form method="post" class="signup-form" id="loginForm">
         {% csrf_token %}
 
+        <!-- Username Field -->
         <div class="form-group">
             <label for="{{ form.username.id_for_label }}">Usuário</label>
             {{ form.username }}  <!-- Django will keep the input value if there's an error -->
             {% if form.username.errors %}
-                <div class="alert alert-danger">
-                    {{ form.username.errors }}
-                </div>
+                <div class="error">{{ form.username.errors }}</div>
             {% endif %}
         </div>
 
+        <!-- Non-Field Errors (General form errors like incorrect login credentials) -->
         {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {% for error in form.non_field_errors %}
-                {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
-                Usuário/senha inválido!
-                {% else %}
-                    {{ error }}
-                {% endif %}
-            {% endfor %}
-        </div>
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    {% if error == "Please enter a correct username and password. Note that both fields may be case-sensitive." %}
+                        Usuário/senha inválido!
+                    {% else %}
+                        {{ error }}
+                    {% endif %}
+                {% endfor %}
+            </div>
         {% endif %}
 
+        <!-- Password Field -->
         <div class="form-group">
             <label for="{{ form.password.id_for_label }}">Senha</label>
             {{ form.password }}  <!-- Django will keep the input value if there's an error -->
             {% if form.password.errors %}
-                <div class="alert alert-danger">
-                    {{ form.password.errors }}
-                </div>
+                <div class="error">{{ form.password.errors }}</div>
             {% endif %}
         </div>
 
-        <button type="submit" class="login-button">Log In</button>
+        <button type="submit" class="signup-button">Log In</button>
     </form>
 
     <div class="forgot-password">
         <a href="{% url 'password_reset' %}" class="forgot-password-link">Esqueci a senha</a>
     </div>
-</section>
+</div>
 {% endblock %}
