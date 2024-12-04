@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Lista de Pontos de Coleta</h2>
+
+  <ul>
+    {% for ponto in pontos_coleta %}
+      <li>
+        <a href="{% url 'editar-ponto-coleta' pk=ponto.pk %}">{{ ponto.endereco }}</a>
+        <a href="{% url 'deletar-ponto-coleta' pk=ponto.pk %}">Excluir</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Ponto de Coleta{% endblock %}
+
+{% block content %}
+<div class="signup-section">
+    <h2>Editar Ponto de Coleta</h2>
+
+    <form method="post" enctype="multipart/form-data" class="signup-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="signup-form-errors">
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="signup-button">Salvar alterações</button>
+    </form>
+
+    <a href="{% url 'ponto-coleta-lista' %}" class="btn btn-secondary">Voltar para a lista</a>
+</div>
+{% endblock %}

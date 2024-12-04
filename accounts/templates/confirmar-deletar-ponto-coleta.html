@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+    <h2>Tem certeza que deseja excluir o Ponto de Coleta?</h2>
+
+    <p>Você está prestes a excluir o ponto de coleta <strong>{{ ponto_coleta.endereco }}</strong>.</p>
+    <p>Esta ação não pode ser desfeita.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+
+    <a href="{% url 'ponto-coleta-lista' %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}

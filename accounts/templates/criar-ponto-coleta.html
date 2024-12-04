@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Cadastrar Novo Tipo de Resíduo{% endblock %}
+{% block title %}Cadastrar Novo Ponto de Coleta{% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/script-modal.js' %}"></script>    
@@ -10,15 +10,16 @@
 
 {% block content %}
 <div class="signup-section">
-    <h2>Cadastrar Novo Tipo de Resíduo</h2>
+    <h2>Cadastrar Novo Ponto de Coleta</h2>
     <form method="post" enctype="multipart/form-data" class="signup-form">
         {% csrf_token %}
+        
         {% for field in form %}
             <div class="signup-form">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
                 {% if field.errors %}
-                    <div class="residuo-form-error">
+                    <div class="signup-form-error">
                         {% for error in field.errors %}
                             <p>{{ error }}</p>
                         {% endfor %}
@@ -26,11 +27,12 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit" class="signup-button">CADASTRAR</button>
+        
+        <button type="submit" class="signup-button">Cadastrar</button>
     </form>
 </div>
 
-<!-- Modal de erro -->
+<!-- Modal de erro (for additional error messages) -->
 <div id="errorModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
@@ -38,7 +40,7 @@
     </div>
 </div>
 
-<!-- Pass Django messages to HTML as data-attributes -->
+<!-- Pass Django messages to HTML as data-attributes for easy access in JS -->
 <div id="django-messages" 
     data-messages="{% for message in messages %}{% if forloop.first %}[{ level: {{ message.level }}, text: '{{ message }}' }]{% else %},{ level: {{ message.level }}, text: '{{ message }}' }{% endif %}{% endfor %}">
 </div>

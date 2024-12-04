@@ -129,6 +129,12 @@ header nav .subscribe-button:hover {
     font-size: 1.5rem;
 }
 
+/* Mapa */
+#map {
+    height: 400px; /* Set appropriate height */
+    width: 100%;   /* Ensure it takes up the full width */
+}
+
 /* Nossa Missao Section */
 .nossa-missao {
     display: flex;

@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from django.views.generic.edit import DeleteView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core.mail import send_mail
@@ -16,7 +17,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 
 from .models import Residuo, PontoColeta
-from .forms import ResiduoForm, CustomUserCreationForm
+from .forms import ResiduoForm, CustomUserCreationForm, PontoColetaForm
 
 @method_decorator(csrf_exempt, name='dispatch')
 class SignUpView(CreateView):
@@ -136,3 +137,86 @@ def tipos_residuo(request):
 def pontos_coleta(request):
     pontos = PontoColeta.objects.all()  # Get all the points
     return render(request, 'pontos-de-coleta.html', {'pontos': pontos})
+
+class PontoColetaCreateView(UserPassesTestMixin, CreateView):
+    model = PontoColeta
+    form_class = PontoColetaForm
+    template_name = 'criar-ponto-coleta.html'
+
+    def get_success_url(self):
+        return reverse_lazy('ponto-coleta-lista')
+
+    def form_valid(self, form):
+        # Custom validation for duplicate address (optional)
+        endereco = form.cleaned_data['endereco']
+        if PontoColeta.objects.filter(endereco=endereco).exists():
+            form.add_error('endereco', f'O endereço "{endereco}" já foi cadastrado!')
+            return self.form_invalid(form)
+
+        response = super().form_valid(form)
+        messages.success(self.request, f"Ponto de coleta '{self.object.endereco}' cadastrado com sucesso!")
+        return response
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Erro ao cadastrar ponto de coleta!")
+        return super().form_invalid(form)
+
+    def test_func(self):
+        # Restrict access to admins only
+        return self.request.user.is_staff
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+        return redirect('home')
+    
+class PontoColetaUpdateView(UserPassesTestMixin, UpdateView):
+    model = PontoColeta
+    form_class = PontoColetaForm
+    template_name = 'editar-ponto-coleta.html'
+
+    def get_success_url(self):
+        # After updating, redirect to the list page
+        return reverse_lazy('ponto-coleta-lista')  # Redirect to list view after update
+
+    def form_valid(self, form):
+        # After successful form submission
+        response = super().form_valid(form)
+        messages.success(self.request, f"Ponto de coleta '{self.object.endereco}' atualizado com sucesso!")
+        return response
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Erro ao atualizar ponto de coleta!")
+        return super().form_invalid(form)
+
+    def test_func(self):
+        # Restrict access to admins only
+        return self.request.user.is_staff
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+        return redirect('home')
+    
+class PontoColetaListView(ListView):
+    model = PontoColeta
+    template_name = 'listar-pontos-coleta.html'
+    context_object_name = 'pontos_coleta'
+
+class PontoColetaDeleteView(UserPassesTestMixin, DeleteView):
+    model = PontoColeta
+    template_name = 'confirmar-deletar-ponto-coleta.html'
+    context_object_name = 'ponto_coleta'
+    success_url = reverse_lazy('ponto-coleta-lista')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+        return redirect('home')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, f"Ponto de coleta '{self.object.endereco}' excluído com sucesso!")
+        return super().delete(request, *args, **kwargs)

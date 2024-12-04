@@ -1,29 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search');
-    const listaResiduo = document.getElementById('lista-residuo');
-    const noResults = document.getElementById('no-results');
+    const residuos = document.querySelectorAll('.residuo'); // Query all 'residuo' divs
+    const noResults = document.createElement('p');
+    noResults.textContent = 'A pesquisa não encontrou nenhum resultado.';
+    noResults.style.display = 'none'; // Initially hide it
 
-    // Esconde a mensagem de "Nenhum resultado" ao carregar a página
-    noResults.style.display = 'none';
+    // Add the 'noResults' message below the search input
+    const searchSection = document.querySelector('.search-section');
+    searchSection.appendChild(noResults);
 
     // Função para filtrar a lista
-    function filterList() {
+    function filterResiduos() {
         const searchTerm = searchInput.value.toLowerCase();
-        const items = listaResiduo.getElementsByTagName('li');
         let found = false;
 
-        // Percorre os itens da lista
-        for (let i = 0; i < items.length; i++) {
-            const item = items[i];
-            if (item.textContent.toLowerCase().includes(searchTerm)) {
-                item.style.display = '';
+        // Percorre os itens da lista de resíduos
+        residuos.forEach(function(residuo) {
+            const name = residuo.dataset.name.toLowerCase();
+            if (name.includes(searchTerm)) {
+                residuo.style.display = '';
                 found = true;
             } else {
-                item.style.display = 'none';
+                residuo.style.display = 'none';
             }
-        }
+        });
 
-        // Se não encontrar resultados, exibe a mensagem de "nenhum resultado"
+        // Exibe a mensagem de "Nenhum resultado" se não encontrar nada
         if (!found && searchTerm) {
             noResults.style.display = 'block';
         } else {
@@ -32,5 +34,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Escuta os eventos de digitação no campo de pesquisa
-    searchInput.addEventListener('input', filterList);
+    searchInput.addEventListener('input', filterResiduos);
 });

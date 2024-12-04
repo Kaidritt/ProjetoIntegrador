@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}Pontos de Coleta{% endblock %}
@@ -6,35 +7,17 @@
 {% block content %}
 <section id="locais" class="locais-section">
     <h2>ENCONTRE PONTOS DE COLETA DE RESÍDUOS</h2>
-    <div id="map" style="height: 500px;"></div>
+    <div id="map"></div>  <!-- Set the height for the map -->
 </section>
+
+{% if user.is_staff %}
+    <!-- Exibe o link para cadastro de novo ponto de coleta apenas para admin -->
+    <a href="{% url 'criar-ponto-coleta' %}">Cadastrar Novo Ponto de Coleta</a>
+{% endif %}
 
 <!-- Include Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
+<!-- Include your custom script -->
 <script src="{% static 'js/script-map.js' %}"></script>
-
-<script>
-    const pontos = {{ pontos|safe }};  // Pass the drop-off points as JSON to JS
-
-    const map = L.map('map').setView([-23.5505, -46.6333], 13); // Central position (São Paulo)
-
-    // Add OpenStreetMap layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Add markers for each ponto
-    pontos.forEach(ponto => {
-        if (ponto.latitude && ponto.longitude) {
-            L.marker([ponto.latitude, ponto.longitude]).addTo(map)
-                .bindPopup(`
-                    <b>${ponto.endereco}</b><br>
-                    Tipos de resíduo: ${ponto.tipos_residuo.map(residuo => residuo.tipoResiduo).join(', ')}
-                `);
-        }
-    });
-</script>
-
 {% endblock %}
