@@ -1,4 +1,5 @@
 from django.db import models
+from geopy.geocoders import Nominatim
 
 # Create your models here.
 #class Subscription(models.Model):
@@ -18,10 +19,19 @@ class Residuo(models.Model):
 
 class PontoColeta(models.Model):
     endereco = models.CharField(max_length=255)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    tipo_residuo = models.ForeignKey(Residuo, on_delete=models.CASCADE)
-    horario = models.CharField(max_length=255, blank=True, null=True)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    tipos_residuo = models.ManyToManyField(Residuo, related_name='pontos_coleta')
 
     def __str__(self):
-        return f"{self.endereco} - {self.tipo_residuo.tipoResiduo}"
+        return f"{self.endereco}"
+
+    def save(self, *args, **kwargs):
+        if self.endereco and (self.latitude is None or self.longitude is None):
+            # Geocode the address
+            geolocator = Nominatim(user_agent="myApp")
+            location = geolocator.geocode(self.endereco)
+            if location:
+                self.latitude = location.latitude
+                self.longitude = location.longitude
+        super(PontoColeta, self).save(*args, **kwargs)

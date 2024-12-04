@@ -15,7 +15,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 
-from .models import Residuo
+from .models import Residuo, PontoColeta
 from .forms import ResiduoForm, CustomUserCreationForm
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -134,4 +134,5 @@ def tipos_residuo(request):
     return render(request, 'tipos-de-residuo.html', {'residuos': residuos, 'search_term': search_term})
 
 def pontos_coleta(request):
-    return render(request, 'pontos-de-coleta.html')
+    pontos = PontoColeta.objects.all()  # Get all the points
+    return render(request, 'pontos-de-coleta.html', {'pontos': pontos})

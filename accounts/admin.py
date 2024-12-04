@@ -10,11 +10,8 @@ class ResiduoAdmin(admin.ModelAdmin):
 admin.site.register(Residuo, ResiduoAdmin)
 
 class PontoColetaAdmin(admin.ModelAdmin):
-    list_display = ('endereco', 'latitude', 'longitude', 'tipo_residuo', 'horario')
-
-    def tipo_residuo_link(self, obj):
-        return format_html('<a href="{}">Adicionar outro</a>',
-                           reverse('admin:app_tiporesiduo_add'))
-    tipo_residuo_link.short_description = 'Adicionar Outro Tipo de Resíduo'
+    list_display = ('endereco', 'latitude', 'longitude')
+    search_fields = ('endereco',)
+    filter_horizontal = ('tipos_residuo',)
 
 admin.site.register(PontoColeta, PontoColetaAdmin)
