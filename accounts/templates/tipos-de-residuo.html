@@ -23,8 +23,8 @@
                     <div class="residuo" data-name="{{ residuo.tipoResiduo }}">
                         <h2>{{ residuo.tipoResiduo }}</h2>
                         <!-- Dynamically load image from the database -->
-                        {% if residuo.image %}
-                            <img src="{{ residuo.image.url }}" alt="{{ residuo.tipoResiduo }}">
+                        {% if residuo.imagem %}
+                            <img src="{{ residuo.imagem.url }}" alt="{{ residuo.tipoResiduo }}">
                         {% else %}
                             <p class="image-not-available">Imagem não disponível</p>
                         {% endif %}

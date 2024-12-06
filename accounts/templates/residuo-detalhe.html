@@ -10,8 +10,8 @@
             <p><strong>Descrição:</strong> {{ residuo.descricao }}</p>
             <p><strong>Diretrizes de descarte:</strong> {{ residuo.diretrizes }}</p>
             
-            {% if residuo.image %}
-                <img src="{{ residuo.image.url }}" alt="{{ residuo.tipoResiduo }}" class="residuo-image">
+            {% if residuo.imagem %}
+                <img src="{{ residuo.imagem.url }}" alt="{{ residuo.tipoResiduo }}" class="residuo-image">
             {% else %}
                 <p class="image-not-available">Imagem não disponível</p>
             {% endif %}
